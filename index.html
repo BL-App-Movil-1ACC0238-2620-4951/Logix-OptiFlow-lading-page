@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="OptiFlow ordena citas, pacientes, inventario y ventas de tu óptica. Tu cita óptica ideal, en tu bolsillo."
+    />
+    <title>OptiFlow — Tu cita óptica ideal, en tu bolsillo</title>
+    <link rel="icon" href="assets/LOGO%20OJO.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="intro" id="intro">
+      <div class="intro-glow" aria-hidden="true"></div>
+      <div class="intro-eye">
+        <img class="eye-open" src="assets/LOGO%20OJO.png" alt="" />
+        <img class="eye-closed" src="assets/LOGO%20OJO%20CERRADO.png" alt="" />
+        <span class="intro-flash" aria-hidden="true"></span>
+      </div>
+      <p class="intro-name">OptiFlow</p>
+      <button class="intro-skip" type="button">Saltar</button>
+    </div>
+    <header class="nav">
+      <div class="wrap nav-bar">
+        <a class="logo" href="#inicio">
+          <img class="logo-mark" src="assets/LOGO%20OJO.png" alt="" />
+          OptiFlow
+        </a>
+        <nav class="nav-links" id="nav-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#planes">Precios</a>
+          <a href="#beneficios">Apps</a>
+          <a href="#contacto">Contacto</a>
+          <button type="button" data-open="login">Login</button>
+          <button class="btn btn-navy" type="button" data-open="demo">Chat WhatsApp</button>
+        </nav>
+        <button class="btn btn-navy nav-wa" type="button" data-open="demo">Chat WhatsApp</button>
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false">
+          <span class="sr-only">Abrir menú</span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="wrap hero" id="inicio">
+        <div class="visual">
+          <h1>Tu cita óptica ideal, <span>en tu bolsillo</span></h1>
+          <div class="stage" id="stage">
+            <p class="sr-only">Lentes dorados en 3D, apoyados sobre un bloque blanco.</p>
+            <div class="desk"></div>
+            <div class="plinth"></div>
+            <div class="pen"></div>
+            <canvas id="glasses"></canvas>
+          </div>
+        </div>
+        <div class="sheet">
+          <article class="hero-card">
+            <h2>Transforma la gestión de tu óptica con <span>OptiFlow</span></h2>
+            <p>OptiFlow conecta pacientes con ópticas para reservar citas, seguir pedidos y mantener historiales clínicos.</p>
+            <button class="btn btn-navy" type="button" data-open="demo">Solicitar Demo</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap block" aria-labelledby="impacto-title">
+        <div class="center">
+          <h2 class="eyebrow" id="impacto-title">Impacto medible en ópticas y consultorios</h2>
+          <p class="lead">Resultados clínicos y operativos respaldados por datos reales de digitalización oftalmológica.</p>
+        </div>
+        <div class="stats">
+          <article class="card stat" style="--p: 23">
+            <div class="ring">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="track" cx="60" cy="60" r="42" />
+                <circle class="value" cx="60" cy="60" r="42" />
+              </svg>
+              <strong>23%<small>Sin recordatorios</small></strong>
+            </div>
+            <p>tasa de inasistencia promedio en citas médicas sin recordatorios</p>
+          </article>
+          <article class="card stat" style="--p: 25">
+            <div class="ring">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="track" cx="60" cy="60" r="42" />
+                <circle class="value" cx="60" cy="60" r="42" />
+              </svg>
+              <strong>25%<small>Menos ausentismo</small></strong>
+            </div>
+            <p>menos ausentismo con notificaciones electrónicas automáticas</p>
+          </article>
+          <article class="card stat" style="--p: 22">
+            <div class="ring">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="track" cx="60" cy="60" r="42" />
+                <circle class="value" cx="60" cy="60" r="42" />
+              </svg>
+              <strong>22%<small>Menos tiempo</small></strong>
+            </div>
+            <p>reducción en tiempo de documentación con sistemas digitales</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap block">
+        <div class="center">
+          <p class="kicker">Quiénes somos</p>
+          <h2>Conócenos</h2>
+        </div>
+        <div class="split">
+          <article class="card tilt">
+            <h3>Misión</h3>
+            <p>Ofrecer una plataforma móvil que simplifique al máximo el proceso de búsqueda y reserva de citas ópticas, afianzando el vínculo entre el paciente y la óptica. Dotamos al optometrista de herramientas de notificación proactivas — recordatorios de citas y alertas de cumpleaños — para una comunicación más clara y oportuna.</p>
+          </article>
+          <article class="card tilt">
+            <h3>Visión</h3>
+            <p>Consolidarnos como la plataforma líder de agendamiento y fidelización para el sector óptico en Latinoamérica, siendo el punto de encuentro natural entre pacientes que buscan atención visual y ópticas que buscan construir relaciones duraderas con su comunidad — todo mediado por la conveniencia de un celular.</p>
+          </article>
+        </div>
+        <article class="banner">
+          <h3>OptiFlow</h3>
+          <p>OptiFlow permite mejorar la eficiencia de los procesos de emisión de citas con clientes u órdenes de laboratorio, de tal forma que se ataca al problema principal que sufren las ópticas, la falta de CRM y falta de comunicación entre el personal, lo que generalmente deriva a expedientes de clientes perdidos, órdenes erróneas al laboratorio, tiempos de entrega largos, entre otros.</p>
+        </article>
+      </section>
+
+      <section class="wrap block" id="beneficios">
+        <div class="center">
+          <h2>Beneficios</h2>
+          <p class="lead">Herramientas ágiles y sencillas que aceleran la atención tanto en consultorio como en mostrador.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card benefit tilt">
+            <span class="orb" style="--c: #2f6fe4"></span>
+            <h3>Reserva en segundos</h3>
+            <p>Agenda tu cita eligiendo modelo, fecha, hora y local — todo desde tu celular, sin desplazarte físicamente.</p>
+          </article>
+          <article class="card benefit tilt">
+            <span class="orb" style="--c: #3d4ed7"></span>
+            <h3>Historia clínica digital</h3>
+            <p>Receta y historial visual siempre disponibles en tu smartphone. Nunca más olvides tus especificaciones de lentes.</p>
+          </article>
+          <article class="card benefit tilt">
+            <span class="orb" style="--c: #1f8fdb"></span>
+            <h3>Seguimiento en tiempo real</h3>
+            <p>Sabe exactamente en qué etapa está la fabricación de tus lentes sin necesidad de llamar a la óptica.</p>
+          </article>
+          <article class="card benefit tilt">
+            <span class="orb" style="--c: #2faf74"></span>
+            <h3>Notificaciones inteligentes</h3>
+            <p>Recordatorios automáticos de citas y cumpleaños de pacientes.</p>
+          </article>
+          <article class="card benefit tilt">
+            <span class="orb" style="--c: #3cba8a"></span>
+            <h3>Delegación de gestión</h3>
+            <p>Asigna la gestión de tu agenda a un colaborador sin perder visibilidad ni control sobre las operaciones.</p>
+          </article>
+          <article class="card benefit tilt">
+            <span class="orb" style="--c: #1fa3a0"></span>
+            <h3>Tablero Kanban</h3>
+            <p>Visualiza y actualiza el estado de cada orden de trabajo con un solo toque desde tu dispositivo móvil.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap block" id="planes">
+        <div class="center">
+          <h2>Planes</h2>
+          <p class="lead">Modelo SaaS escalable según el tamaño y necesidades de tu óptica.</p>
+        </div>
+        <div class="plans">
+          <article class="card plan tilt">
+            <header>
+              <h3>Básico</h3>
+              <span class="chip">Inicio rápido</span>
+            </header>
+            <p>Ideal para ópticas independientes que inician su digitalización.</p>
+            <p class="price"><b>S/ 49</b> <small>/mes</small></p>
+            <ul>
+              <li>1 sucursal</li>
+              <li>Hasta 100 citas/mes</li>
+              <li>Notificaciones push</li>
+              <li>Historial clínico digital</li>
+              <li>Soporte por correo</li>
+            </ul>
+            <button class="btn btn-navy" type="button" data-open="demo">Empezar gratis</button>
+          </article>
+          <article class="plan plan-hot tilt">
+            <span class="popular">Más popular</span>
+            <header>
+              <h3>Profesional</h3>
+              <span class="chip">Recomendado</span>
+            </header>
+            <p>Para ópticas en crecimiento que necesitan más control y visibilidad.</p>
+            <p class="price"><b>S/ 129</b> <small>/mes</small></p>
+            <ul>
+              <li>Hasta 3 sucursales</li>
+              <li>Citas ilimitadas</li>
+              <li>Notificaciones push + WhatsApp</li>
+              <li>Tablero Kanban de órdenes</li>
+              <li>Delegación de gestión</li>
+              <li>Soporte prioritario</li>
+            </ul>
+            <button class="btn btn-blue" type="button" data-open="demo">Elegir Profesional</button>
+          </article>
+          <article class="card plan tilt">
+            <header>
+              <h3>Empresarial</h3>
+              <span class="chip">Multi-sucursal</span>
+            </header>
+            <p>Para cadenas con múltiples sucursales y equipos completos de gestión.</p>
+            <p class="price"><b>S/ 299</b> <small>/mes</small></p>
+            <ul>
+              <li>Sucursales ilimitadas</li>
+              <li>Citas ilimitadas</li>
+              <li>Push + WhatsApp + SMS</li>
+              <li>Analytics avanzado</li>
+              <li>API de integración</li>
+              <li>Gestor de cuenta dedicado</li>
+            </ul>
+            <button class="btn btn-navy" type="button" data-open="demo">Contactar ventas</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap block" aria-labelledby="equipo-title">
+        <div class="center">
+          <h2 id="equipo-title">Equipo</h2>
+        </div>
+        <div class="team-top">
+          <article class="card member tilt">
+            <div>
+              <h3>Nicolás Atoche Gonzales</h3>
+              <p class="role">Software Engineer</p>
+              <p>Sexto ciclo de Ingeniería de Software. Conocimientos en C++, Lua, Python y Java. Orientado al pensamiento lógico y soluciones óptimas.</p>
+            </div>
+            <span class="orb square" style="--c: #2f6fe4"></span>
+          </article>
+          <article class="card member tilt">
+            <div>
+              <h3>Felix Orlando Becerra Tito</h3>
+              <p class="role">Full Stack Developer</p>
+              <p>Experiencia en Java, Python, HTML, CSS y bases de datos. Participación en proyectos frontend y backend. Apasionado por nuevas tecnologías.</p>
+            </div>
+            <span class="orb square" style="--c: #3d4ed7"></span>
+          </article>
+          <article class="card member tilt">
+            <div>
+              <h3>Eslander Celis Berrospi</h3>
+              <p class="role">Software Developer</p>
+              <p>Conocimientos en Python, C++ y HTML. Comprometido con la ética, el trabajo en equipo y el desarrollo de soluciones de calidad.</p>
+            </div>
+            <span class="orb square" style="--c: #1f8fdb"></span>
+          </article>
+        </div>
+        <div class="team-bottom">
+          <article class="card member tilt">
+            <div>
+              <h3>Mariana Morocho Pinedo</h3>
+              <p class="role">Software Engineer</p>
+              <p>Conocimientos en C++, Python y Java. Proactiva y con disposición de generar un buen ambiente de trabajo en equipo.</p>
+            </div>
+            <span class="orb square" style="--c: #2faf74"></span>
+          </article>
+          <article class="card member tilt">
+            <div>
+              <h3>César Quispe Llacsa huanga</h3>
+              <p class="role">Software Developer</p>
+              <p>Conocimientos en lógica de programación, bases de datos y desarrollo de aplicaciones. Responsable y proactivo.</p>
+            </div>
+            <span class="orb square" style="--c: #1fa3a0"></span>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap block" aria-labelledby="resenas-title">
+        <div class="center">
+          <p class="kicker">Lo que piensan</p>
+          <h2 id="resenas-title">Reseñas</h2>
+        </div>
+        <div class="grid-3">
+          <figure class="card review tilt">
+            <div class="review-top">
+              <span class="quote-mark" aria-hidden="true">“</span>
+              <div class="stars" data-stars="5"></div>
+            </div>
+            <blockquote>Necesitaba automatizar recordatorios y permitir a mis clientes consultar sus pedidos. OptiFlow cubrió exactamente esa necesidad desde el primer día.</blockquote>
+            <figcaption>
+              <span class="avatar">LG</span>
+              <span><b>Liz Guevara</b><small>Optometrista — Tarapoto</small></span>
+            </figcaption>
+          </figure>
+          <figure class="card review tilt">
+            <div class="review-top">
+              <span class="quote-mark" aria-hidden="true">“</span>
+              <div class="stars" data-stars="5"></div>
+            </div>
+            <blockquote>Logré automatizar recordatorios de citas y seguimiento de pedidos, mejorando la organización y rapidez de atención de mi óptica notablemente.</blockquote>
+            <figcaption>
+              <span class="avatar">MR</span>
+              <span><b>Marcos Ruiz</b><small>Optometrista — Lambayeque</small></span>
+            </figcaption>
+          </figure>
+          <figure class="card review tilt">
+            <div class="review-top">
+              <span class="quote-mark" aria-hidden="true">“</span>
+              <div class="stars" data-stars="5"></div>
+            </div>
+            <blockquote>Rastrear el estado de fabricación en tiempo real es increíble. Es como el seguimiento de Shalom pero para mi receta visual.</blockquote>
+            <figcaption>
+              <span class="avatar">AB</span>
+              <span><b>Azumy Bautista</b><small>Paciente — El Agustino</small></span>
+            </figcaption>
+          </figure>
+          <figure class="card review tilt">
+            <div class="review-top">
+              <span class="quote-mark" aria-hidden="true">“</span>
+              <div class="stars" data-stars="5"></div>
+            </div>
+            <blockquote>Recibo notificaciones automáticas y ya no tengo que llamar para saber si mis lentes están listos. La agilidad en la entrega es lo que más valoro.</blockquote>
+            <figcaption>
+              <span class="avatar">AL</span>
+              <span><b>Alejandro Lévano</b><small>Arquitecto — Chorrillos</small></span>
+            </figcaption>
+          </figure>
+          <figure class="card review tilt">
+            <div class="review-top">
+              <span class="quote-mark" aria-hidden="true">“</span>
+              <div class="stars" data-stars="5"></div>
+            </div>
+            <blockquote>Tengo mi receta siempre en el celular y recibo notificaciones por WhatsApp. Ya no olvido los detalles de mis lentes ni cuándo volver al control.</blockquote>
+            <figcaption>
+              <span class="avatar">AC</span>
+              <span><b>Antares Celis</b><small>Paciente — San Juan de Lurigancho</small></span>
+            </figcaption>
+          </figure>
+          <figure class="card review tilt">
+            <div class="review-top">
+              <span class="quote-mark" aria-hidden="true">“</span>
+              <div class="stars" data-stars="5"></div>
+            </div>
+            <blockquote>Digitalizar el historial de refracción y el estado de biselado redujo a cero los errores entre el consultorio y el taller óptico.</blockquote>
+            <figcaption>
+              <span class="avatar">VR</span>
+              <span><b>Valeria Ramos</b><small>Directora Técnica Óptica — Miraflores</small></span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="wrap" id="contacto">
+        <div class="cta">
+          <p>Tu cita óptica ideal, en tu bolsillo</p>
+          <h2>Consigue OptiFlow Ya!</h2>
+          <button class="btn btn-navy" type="button" data-open="demo">Solicitar Demo</button>
+          <div class="legal-links">
+            <button type="button" data-open="privacy">Política de privacidad</button>
+            <span aria-hidden="true">·</span>
+            <button type="button" data-open="terms">Términos y condiciones</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>© <span id="year"></span> OptiFlow. Todos los derechos reservados.</footer>
+
+    <dialog class="modal" id="modal">
+      <form id="panel-demo" data-panel="demo">
+        <p class="kicker">Demo</p>
+        <h3>Solicita OptiFlow para tu óptica</h3>
+        <p>Cuéntanos cómo atiendes hoy. Te escribimos para agendar una demo con tus citas, tu inventario y tu caja.</p>
+        <label>Nombre <input name="nombre" required /></label>
+        <label>Óptica <input name="optica" required /></label>
+        <label>WhatsApp <input name="whatsapp" type="tel" required /></label>
+        <label>Correo <input name="correo" type="email" required /></label>
+        <label>¿Qué quieres ordenar primero?
+          <textarea name="mensaje" rows="3" placeholder="Citas, inventario, caja..."></textarea>
+        </label>
+        <button class="btn btn-navy" type="submit">Enviar solicitud</button>
+      </form>
+
+      <form id="panel-login" data-panel="login" hidden>
+        <p class="kicker">Acceso</p>
+        <h3>Entra a tu óptica</h3>
+        <p>El ingreso de clientes se activa con la cuenta de OptiFlow. Desde aquí puedes dejar tus datos o pedir la demo.</p>
+        <label>Correo <input name="correo" type="email" required /></label>
+        <label>Contraseña <input name="clave" type="password" required /></label>
+        <button class="btn btn-navy" type="submit">Continuar</button>
+      </form>
+
+      <div data-panel="privacy" hidden>
+        <h3>Política de privacidad</h3>
+        <p>OptiFlow trata los datos de tu óptica y de tus pacientes solo para prestar el servicio: agenda, historias, inventario y soporte.</p>
+        <p>No vendemos esa información. El acceso queda limitado al personal que tú autorizas.</p>
+        <p class="note">Este texto es un resumen de la landing. El contrato definitivo se entrega al activar el plan.</p>
+        <button class="btn btn-navy" type="button" data-close>Cerrar</button>
+      </div>
+
+      <div data-panel="terms" hidden>
+        <h3>Términos y condiciones</h3>
+        <p>El plan se cobra en soles, por mes. Puedes cambiar de plan o cancelar antes del siguiente ciclo.</p>
+        <p>OptiFlow es una herramienta de gestión. La graduación y la atención clínica siguen siendo responsabilidad del profesional de tu óptica.</p>
+        <p class="note">Este resumen orienta la contratación. Las condiciones finales viajan con la propuesta comercial.</p>
+        <button class="btn btn-navy" type="button" data-close>Cerrar</button>
+      </div>
+
+      <div data-panel="done" hidden>
+        <h3>Solicitud lista</h3>
+        <p id="done-text"></p>
+        <button class="btn btn-navy" type="button" data-close>Cerrar</button>
+      </div>
+    </dialog>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./js/vendor/three.module.js"
+        }
+      }
+    </script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/glasses.js"></script>
+  </body>
+</html>
