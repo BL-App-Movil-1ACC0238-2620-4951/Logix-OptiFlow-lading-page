@@ -388,6 +388,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .stat.is-in .value { stroke-dashoffset: calc(264 - (264 * var(--p) / 100)); }
 
 .split .card, .benefit { padding: 28px; text-align: center; }
+.benefit { padding: 22px 24px; }
 .split h3, .benefit h3 { color: var(--blue); }
 .split p, .benefit p, .member p, .review blockquote { margin-top: 12px; color: var(--muted); line-height: 1.7; font-size: 14px; }
 .banner {
@@ -413,8 +414,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .banner::after { width: 140px; height: 140px; right: -70px; top: 24px; border-color: rgba(255, 255, 255, 0.12); animation: ring-spin 22s linear infinite reverse; }
 
 .benefit-icon {
-  width: 88px;
-  height: 88px;
+  width: 72px;
+  height: 72px;
   margin: 0 auto;
   object-fit: contain;
   animation: orb-float 4.6s ease-in-out infinite;
@@ -422,6 +423,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .benefit:nth-child(2n) .benefit-icon { animation-delay: -1.2s; }
 .benefit:nth-child(3n) .benefit-icon { animation-delay: -2.4s; }
 .benefit h3 { margin-top: 10px; color: var(--ink); }
+.benefit p { margin-top: 8px; }
+#beneficios .center { margin-bottom: 28px; }
 
 .toggle {
   display: inline-flex;
