@@ -8,7 +8,7 @@
       content="OptiFlow ordena citas, pacientes, inventario y ventas de tu óptica. Tu cita óptica ideal, en tu bolsillo."
     />
     <title>OptiFlow — Tu cita óptica ideal, en tu bolsillo</title>
-    <link rel="icon" href="assets/LOGO%20OJO.png" type="image/png" />
+    <link rel="icon" href="assets/LOGO%20LADING/LOGO%20OJO.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,12 +18,48 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="page-fx" aria-hidden="true">
+      <span class="blob blob-a"></span>
+      <span class="blob blob-b"></span>
+      <span class="blob blob-c"></span>
+    </div>
     <div class="intro" id="intro">
       <div class="intro-glow" aria-hidden="true"></div>
       <div class="intro-eye">
-        <img class="eye-open" src="assets/LOGO%20OJO.png" alt="" />
-        <img class="eye-closed" src="assets/LOGO%20OJO%20CERRADO.png" alt="" />
-        <span class="intro-flash" aria-hidden="true"></span>
+        <div class="intro-video-stage">
+          <div class="intro-video-polish">
+            <canvas
+              id="intro-video-canvas"
+              class="intro-video-canvas"
+              aria-hidden="true"
+            ></canvas>
+          </div>
+          <video
+            id="intro-video"
+            class="intro-video"
+            src="assets/LOGO%20ANIMACION/ojito.mp4"
+            muted
+            playsinline
+            preload="auto"
+          ></video>
+        </div>
+        <div class="intro-frame-fallback" hidden>
+          <img
+            class="eye-closed"
+            src="assets/LOGO%20ANIMACION/LOGO%20OJO%20CERRADO.png"
+            alt=""
+          />
+          <img
+            class="eye-half"
+            src="assets/LOGO%20ANIMACION/LOGO%20OJO%20SEMI-ABIERTO.png"
+            alt=""
+          />
+          <img
+            class="eye-open"
+            src="assets/LOGO%20ANIMACION/LOGO%20OJO%20ABIERTO.png"
+            alt=""
+          />
+        </div>
       </div>
       <p class="intro-name">OptiFlow</p>
       <button class="intro-skip" type="button">Saltar</button>
@@ -31,7 +67,7 @@
     <header class="nav">
       <div class="wrap nav-bar">
         <a class="logo" href="#inicio">
-          <img class="logo-mark" src="assets/LOGO%20OJO.png" alt="" />
+          <img class="logo-mark" src="assets/LOGO%20LADING/LOGO%20OJO.png" alt="" />
           OptiFlow
         </a>
         <nav class="nav-links" id="nav-links">
@@ -40,9 +76,9 @@
           <a href="#beneficios">Apps</a>
           <a href="#contacto">Contacto</a>
           <button type="button" data-open="login">Login</button>
-          <button class="btn btn-navy" type="button" data-open="demo">Chat WhatsApp</button>
+          <button class="btn btn-navy" type="button" data-open="demo">Comenzar</button>
         </nav>
-        <button class="btn btn-navy nav-wa" type="button" data-open="demo">Chat WhatsApp</button>
+        <button class="btn btn-navy nav-wa" type="button" data-open="demo">Comenzar</button>
         <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false">
           <span class="sr-only">Abrir menú</span>
           <span></span>
@@ -53,7 +89,11 @@
     </header>
 
     <main>
-      <section class="wrap hero" id="inicio">
+      <section class="hero-band" id="inicio">
+        <div class="hero-bg" aria-hidden="true">
+          <img src="assets/image%206.png" alt="" />
+        </div>
+        <div class="wrap hero">
         <div class="visual">
           <h1>Tu cita óptica ideal, <span>en tu bolsillo</span></h1>
           <div class="stage" id="stage">
@@ -71,9 +111,11 @@
             <button class="btn btn-navy" type="button" data-open="demo">Solicitar Demo</button>
           </article>
         </div>
+        </div>
       </section>
 
-      <section class="wrap block" aria-labelledby="impacto-title">
+      <section class="band band-plain" aria-labelledby="impacto-title">
+        <div class="wrap block">
         <div class="center">
           <h2 class="eyebrow" id="impacto-title">Impacto medible en ópticas y consultorios</h2>
           <p class="lead">Resultados clínicos y operativos respaldados por datos reales de digitalización oftalmológica.</p>
@@ -110,9 +152,11 @@
             <p>reducción en tiempo de documentación con sistemas digitales</p>
           </article>
         </div>
+        </div>
       </section>
 
-      <section class="wrap block">
+      <section class="band band-tint">
+        <div class="wrap block">
         <div class="center">
           <p class="kicker">Quiénes somos</p>
           <h2>Conócenos</h2>
@@ -131,48 +175,52 @@
           <h3>OptiFlow</h3>
           <p>OptiFlow permite mejorar la eficiencia de los procesos de emisión de citas con clientes u órdenes de laboratorio, de tal forma que se ataca al problema principal que sufren las ópticas, la falta de CRM y falta de comunicación entre el personal, lo que generalmente deriva a expedientes de clientes perdidos, órdenes erróneas al laboratorio, tiempos de entrega largos, entre otros.</p>
         </article>
+        </div>
       </section>
 
-      <section class="wrap block" id="beneficios">
+      <section class="band band-plain" id="beneficios">
+        <div class="wrap block">
         <div class="center">
           <h2>Beneficios</h2>
           <p class="lead">Herramientas ágiles y sencillas que aceleran la atención tanto en consultorio como en mostrador.</p>
         </div>
         <div class="grid-3">
           <article class="card benefit tilt">
-            <span class="orb" style="--c: #2f6fe4"></span>
+            <img class="benefit-icon" src="assets/beneficios/reserva.png" alt="" width="88" height="88" />
             <h3>Reserva en segundos</h3>
             <p>Agenda tu cita eligiendo modelo, fecha, hora y local — todo desde tu celular, sin desplazarte físicamente.</p>
           </article>
           <article class="card benefit tilt">
-            <span class="orb" style="--c: #3d4ed7"></span>
+            <img class="benefit-icon" src="assets/beneficios/historial.png" alt="" width="88" height="88" />
             <h3>Historia clínica digital</h3>
             <p>Receta y historial visual siempre disponibles en tu smartphone. Nunca más olvides tus especificaciones de lentes.</p>
           </article>
           <article class="card benefit tilt">
-            <span class="orb" style="--c: #1f8fdb"></span>
+            <img class="benefit-icon" src="assets/beneficios/seguimiento.png" alt="" width="88" height="88" />
             <h3>Seguimiento en tiempo real</h3>
             <p>Sabe exactamente en qué etapa está la fabricación de tus lentes sin necesidad de llamar a la óptica.</p>
           </article>
           <article class="card benefit tilt">
-            <span class="orb" style="--c: #2faf74"></span>
+            <img class="benefit-icon" src="assets/beneficios/notificacion.png" alt="" width="88" height="88" />
             <h3>Notificaciones inteligentes</h3>
             <p>Recordatorios automáticos de citas y cumpleaños de pacientes.</p>
           </article>
           <article class="card benefit tilt">
-            <span class="orb" style="--c: #3cba8a"></span>
+            <img class="benefit-icon" src="assets/beneficios/delegacion.png" alt="" width="88" height="88" />
             <h3>Delegación de gestión</h3>
             <p>Asigna la gestión de tu agenda a un colaborador sin perder visibilidad ni control sobre las operaciones.</p>
           </article>
           <article class="card benefit tilt">
-            <span class="orb" style="--c: #1fa3a0"></span>
+            <img class="benefit-icon" src="assets/beneficios/tablero.png" alt="" width="88" height="88" />
             <h3>Tablero Kanban</h3>
             <p>Visualiza y actualiza el estado de cada orden de trabajo con un solo toque desde tu dispositivo móvil.</p>
           </article>
         </div>
+        </div>
       </section>
 
-      <section class="wrap block" id="planes">
+      <section class="band band-tint" id="planes">
+        <div class="wrap block">
         <div class="center">
           <h2>Planes</h2>
           <p class="lead">Modelo SaaS escalable según el tamaño y necesidades de tu óptica.</p>
@@ -230,9 +278,11 @@
             <button class="btn btn-navy" type="button" data-open="demo">Contactar ventas</button>
           </article>
         </div>
+        </div>
       </section>
 
-      <section class="wrap block" aria-labelledby="equipo-title">
+      <section class="band band-plain" aria-labelledby="equipo-title">
+        <div class="wrap block">
         <div class="center">
           <h2 id="equipo-title">Equipo</h2>
         </div>
@@ -243,7 +293,14 @@
               <p class="role">Software Engineer</p>
               <p>Sexto ciclo de Ingeniería de Software. Conocimientos en C++, Lua, Python y Java. Orientado al pensamiento lógico y soluciones óptimas.</p>
             </div>
-            <span class="orb square" style="--c: #2f6fe4"></span>
+            <img
+              class="member-photo"
+              src="assets/members/nicolas.png"
+              alt="Nicolás Atoche Gonzales"
+              width="72"
+              height="72"
+              loading="lazy"
+            />
           </article>
           <article class="card member tilt">
             <div>
@@ -251,7 +308,14 @@
               <p class="role">Full Stack Developer</p>
               <p>Experiencia en Java, Python, HTML, CSS y bases de datos. Participación en proyectos frontend y backend. Apasionado por nuevas tecnologías.</p>
             </div>
-            <span class="orb square" style="--c: #3d4ed7"></span>
+            <img
+              class="member-photo"
+              src="assets/members/Felix.jpg"
+              alt="Felix Orlando Becerra Tito"
+              width="72"
+              height="72"
+              loading="lazy"
+            />
           </article>
           <article class="card member tilt">
             <div>
@@ -259,7 +323,14 @@
               <p class="role">Software Developer</p>
               <p>Conocimientos en Python, C++ y HTML. Comprometido con la ética, el trabajo en equipo y el desarrollo de soluciones de calidad.</p>
             </div>
-            <span class="orb square" style="--c: #1f8fdb"></span>
+            <img
+              class="member-photo"
+              src="assets/members/eslander.jpg"
+              alt="Eslander Celis Berrospi"
+              width="72"
+              height="72"
+              loading="lazy"
+            />
           </article>
         </div>
         <div class="team-bottom">
@@ -269,7 +340,14 @@
               <p class="role">Software Engineer</p>
               <p>Conocimientos en C++, Python y Java. Proactiva y con disposición de generar un buen ambiente de trabajo en equipo.</p>
             </div>
-            <span class="orb square" style="--c: #2faf74"></span>
+            <img
+              class="member-photo"
+              src="assets/members/Mariana.jpeg"
+              alt="Mariana Morocho Pinedo"
+              width="72"
+              height="72"
+              loading="lazy"
+            />
           </article>
           <article class="card member tilt">
             <div>
@@ -277,12 +355,21 @@
               <p class="role">Software Developer</p>
               <p>Conocimientos en lógica de programación, bases de datos y desarrollo de aplicaciones. Responsable y proactivo.</p>
             </div>
-            <span class="orb square" style="--c: #1fa3a0"></span>
+            <img
+              class="member-photo"
+              src="assets/members/cesar.jpeg"
+              alt="César Quispe Llacsa huanga"
+              width="72"
+              height="72"
+              loading="lazy"
+            />
           </article>
+        </div>
         </div>
       </section>
 
-      <section class="wrap block" aria-labelledby="resenas-title">
+      <section class="band band-tint" aria-labelledby="resenas-title">
+        <div class="wrap block">
         <div class="center">
           <p class="kicker">Lo que piensan</p>
           <h2 id="resenas-title">Reseñas</h2>
@@ -355,9 +442,11 @@
             </figcaption>
           </figure>
         </div>
+        </div>
       </section>
 
-      <section class="wrap" id="contacto">
+      <section class="band band-plain" id="contacto">
+        <div class="wrap">
         <div class="cta">
           <p>Tu cita óptica ideal, en tu bolsillo</p>
           <h2>Consigue OptiFlow Ya!</h2>
@@ -367,6 +456,7 @@
             <span aria-hidden="true">·</span>
             <button type="button" data-open="terms">Términos y condiciones</button>
           </div>
+        </div>
         </div>
       </section>
     </main>
