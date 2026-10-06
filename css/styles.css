@@ -467,7 +467,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .price { margin-top: 22px; font-size: 18px; font-weight: 800; }
 .price b { font-size: 40px; letter-spacing: -0.04em; }
 .price small { color: #7d91b3; font-size: 14px; }
-.plan ul { display: grid; gap: 10px; margin-top: 22px; }
+.plan ul { display: grid; gap: 10px; margin-top: 22px; margin-bottom: 28px; }
 .plan li { display: flex; gap: 8px; color: #3e5680; font-size: 14px; }
 .plan li::before {
   content: "";
@@ -535,6 +535,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .review b, .review small { display: block; }
 .review small { color: #7d91b3; font-size: 12px; }
 .avatar {
+  flex: none;
   display: grid;
   place-items: center;
   width: 40px;
