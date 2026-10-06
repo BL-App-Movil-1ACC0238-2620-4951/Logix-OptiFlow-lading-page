@@ -281,7 +281,7 @@
         </div>
       </section>
 
-      <section class="band band-plain" aria-labelledby="equipo-title">
+      <section class="band band-plain" id="equipo" aria-labelledby="equipo-title">
         <div class="wrap block">
         <div class="center">
           <h2 id="equipo-title">Equipo</h2>
@@ -368,7 +368,7 @@
         </div>
       </section>
 
-      <section class="band band-tint" aria-labelledby="resenas-title">
+      <section class="band band-tint" id="resenas" aria-labelledby="resenas-title">
         <div class="wrap block">
         <div class="center">
           <p class="kicker">Lo que piensan</p>
@@ -461,7 +461,80 @@
       </section>
     </main>
 
-    <footer>© <span id="year"></span> OptiFlow. Todos los derechos reservados.</footer>
+    <footer class="site-footer">
+      <div class="foot-fx" aria-hidden="true">
+        <span class="foot-blob foot-blob-a"></span>
+        <span class="foot-blob foot-blob-b"></span>
+        <span class="foot-ring foot-ring-a"></span>
+        <span class="foot-ring foot-ring-b"></span>
+        <svg class="foot-dots foot-dots-a" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" /></svg>
+        <svg class="foot-dots foot-dots-b" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" /></svg>
+      </div>
+
+      <div class="wrap foot-main">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a class="foot-logo" href="#inicio" aria-label="OptiFlow, volver al inicio">
+              <span class="foot-logo-badge">
+                <img src="assets/LOGO%20LADING/LOGO%20OJO.png" alt="" width="44" height="44" />
+              </span>
+              OptiFlow
+            </a>
+            <p class="foot-tag">Tu cita óptica ideal, <span>en tu bolsillo</span></p>
+            <p class="foot-about">Citas, historiales clínicos y órdenes de laboratorio de tu óptica, conectados en un solo flujo.</p>
+            <ul class="foot-chips" aria-label="Lo que ofrece OptiFlow">
+              <li>Reservas</li>
+              <li>Historial clínico</li>
+              <li>Tablero Kanban</li>
+            </ul>
+            <button class="btn btn-light" type="button" data-open="demo">Solicitar Demo</button>
+          </div>
+
+          <nav class="foot-col" aria-labelledby="foot-explorar">
+            <h3 class="foot-title" id="foot-explorar">Explorar</h3>
+            <ul>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#beneficios">Beneficios</a></li>
+              <li><a href="#planes">Planes</a></li>
+              <li><a href="#equipo">Equipo</a></li>
+              <li><a href="#resenas">Reseñas</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-labelledby="foot-acceso">
+            <h3 class="foot-title" id="foot-acceso">Acceso</h3>
+            <ul>
+              <li><button type="button" data-open="login">Iniciar sesión</button></li>
+              <li><button type="button" data-open="demo">Solicitar demo</button></li>
+              <li><button type="button" data-open="demo">Contactar ventas</button></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-labelledby="foot-legal">
+            <h3 class="foot-title" id="foot-legal">Legal</h3>
+            <ul>
+              <li><button type="button" data-open="privacy">Política de privacidad</button></li>
+              <li><button type="button" data-open="terms">Términos y condiciones</button></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="foot-bottom">
+          <p>© <span id="year"></span> OptiFlow. Todos los derechos reservados.</p>
+          <div class="foot-end">
+            <span>Hecho en Perú</span>
+            <a class="to-top" href="#inicio" aria-label="Volver arriba">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 19V5" />
+                <path d="m5 12 7-7 7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="foot-mark" aria-hidden="true">OptiFlow</p>
+      </div>
+    </footer>
 
     <dialog class="modal" id="modal">
       <form id="panel-demo" data-panel="demo">
