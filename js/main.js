@@ -181,15 +181,73 @@ const modal = document.querySelector("#modal");
 
 document.querySelector("#year").textContent = String(new Date().getFullYear());
 
-menuBtn.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("is-open");
+function setMenuOpen(open) {
+  navLinks.classList.toggle("is-open", open);
   menuBtn.setAttribute("aria-expanded", String(open));
   menuBtn.querySelector(".sr-only").textContent = open ? "Cerrar menú" : "Abrir menú";
+}
+
+menuBtn.addEventListener("click", () => {
+  setMenuOpen(!navLinks.classList.contains("is-open"));
 });
 
 navLinks.addEventListener("click", (event) => {
-  if (event.target.closest("a")) navLinks.classList.remove("is-open");
+  if (event.target.closest("a, button")) setMenuOpen(false);
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navLinks.classList.contains("is-open")) {
+    setMenuOpen(false);
+    menuBtn.focus();
+  }
+});
+
+const sectionLinks = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
+const navigationSections = Array.from(document.querySelectorAll("main section[id]"))
+  .map((section) => ({
+    section,
+    link: sectionLinks.find((link) => link.getAttribute("href") === "#" + section.id)
+  }))
+  .filter(({ link }) => link);
+
+function updateActiveSection() {
+  if (!navigationSections.length) return;
+  const marker = document.querySelector(".nav").getBoundingClientRect().bottom + 24;
+  let current = navigationSections[0];
+
+  // Follow document order, even when the menu lists prices before benefits.
+  navigationSections.forEach((item) => {
+    if (item.section.getBoundingClientRect().top <= marker) current = item;
+  });
+
+  // The last section may be too short to reach the top of the viewport.
+  if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+    current = navigationSections[navigationSections.length - 1];
+  }
+
+  sectionLinks.forEach((link) => {
+    if (link === current.link) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+}
+
+let navigationFrame = 0;
+function queueNavigationUpdate() {
+  if (navigationFrame) return;
+  navigationFrame = requestAnimationFrame(() => {
+    navigationFrame = 0;
+    updateActiveSection();
+  });
+}
+
+window.addEventListener("scroll", queueNavigationUpdate, { passive: true });
+window.addEventListener("resize", () => {
+  if (window.matchMedia("(min-width: 861px)").matches) setMenuOpen(false);
+  queueNavigationUpdate();
+});
+window.addEventListener("pageshow", queueNavigationUpdate);
+window.addEventListener("hashchange", queueNavigationUpdate);
+updateActiveSection();
 
 function openModal(name) {
   modal.querySelectorAll("[data-panel]").forEach((panel) => {
