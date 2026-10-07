@@ -203,16 +203,61 @@ document.addEventListener("keydown", (event) => {
 });
 
 const sectionLinks = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
-const navigationSections = Array.from(document.querySelectorAll("main section[id]"))
+const navigationSections = Array.from(document.querySelectorAll("main section"))
   .map((section) => ({
     section,
-    link: sectionLinks.find((link) => link.getAttribute("href") === "#" + section.id)
-  }))
-  .filter(({ link }) => link);
+    // Introductory blocks without an anchor belong to Inicio.
+    link: sectionLinks.find((link) => link.getAttribute("href") === "#" + (section.id || "inicio"))
+  }));
+
+let selectedNavigationLink = null;
+let navigationEndTimer = 0;
+
+function markNavigationLink(activeLink) {
+  sectionLinks.forEach((link) => {
+    if (link === activeLink) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+}
+
+function finishNavigationScroll() {
+  window.clearTimeout(navigationEndTimer);
+  selectedNavigationLink = null;
+  queueNavigationUpdate();
+}
+
+function waitForNavigationEnd() {
+  window.clearTimeout(navigationEndTimer);
+  // Fallback for browsers without scrollend, including a click on the current section.
+  navigationEndTimer = window.setTimeout(finishNavigationScroll, 180);
+}
+
+document.addEventListener("click", (event) => {
+  const anchor = event.target.closest('a[href^="#"]');
+  if (!anchor || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  const link = sectionLinks.find((item) => item.getAttribute("href") === anchor.getAttribute("href"));
+  if (!link) return;
+  selectedNavigationLink = link;
+  markNavigationLink(link);
+  waitForNavigationEnd();
+});
+
+// Manual input interrupts the selected destination and resumes section tracking.
+window.addEventListener("wheel", finishNavigationScroll, { passive: true });
+window.addEventListener("touchstart", finishNavigationScroll, { passive: true });
+document.addEventListener("keydown", (event) => {
+  if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) finishNavigationScroll();
+});
+window.addEventListener("scrollend", finishNavigationScroll);
 
 function updateActiveSection() {
   if (!navigationSections.length) return;
-  const marker = document.querySelector(".nav").getBoundingClientRect().bottom + 24;
+  if (selectedNavigationLink) {
+    markNavigationLink(selectedNavigationLink);
+    return;
+  }
+  const headerBottom = document.querySelector(".nav").getBoundingClientRect().bottom;
+  const marker = headerBottom + Math.min(140, Math.max(24, (window.innerHeight - headerBottom) * 0.2));
   let current = navigationSections[0];
 
   // Follow document order, even when the menu lists prices before benefits.
@@ -225,10 +270,7 @@ function updateActiveSection() {
     current = navigationSections[navigationSections.length - 1];
   }
 
-  sectionLinks.forEach((link) => {
-    if (link === current.link) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
-  });
+  markNavigationLink(current.link);
 }
 
 let navigationFrame = 0;
@@ -240,11 +282,15 @@ function queueNavigationUpdate() {
   });
 }
 
-window.addEventListener("scroll", queueNavigationUpdate, { passive: true });
+window.addEventListener("scroll", () => {
+  if (selectedNavigationLink) waitForNavigationEnd();
+  queueNavigationUpdate();
+}, { passive: true });
 window.addEventListener("resize", () => {
   if (window.matchMedia("(min-width: 861px)").matches) setMenuOpen(false);
   queueNavigationUpdate();
 });
+window.addEventListener("load", queueNavigationUpdate);
 window.addEventListener("pageshow", queueNavigationUpdate);
 window.addEventListener("hashchange", queueNavigationUpdate);
 updateActiveSection();
