@@ -541,12 +541,29 @@
         <p class="kicker">Demo</p>
         <h3>Solicita OptiFlow para tu óptica</h3>
         <p>Cuéntanos cómo atiendes hoy. Te escribimos para agendar una demo con tus citas, tu inventario y tu caja.</p>
-        <label>Nombre <input name="nombre" required /></label>
-        <label>Óptica <input name="optica" required /></label>
-        <label>WhatsApp <input name="whatsapp" type="tel" required /></label>
-        <label>Correo <input name="correo" type="email" required /></label>
+        <label>Nombre
+          <input name="nombre" autocomplete="name" aria-describedby="demo-nombre-help demo-nombre-error" required />
+          <small class="field-help" id="demo-nombre-help">Escribe tu nombre completo. Ej.: Ana García.</small>
+          <small class="field-error" id="demo-nombre-error" aria-live="polite" hidden></small>
+        </label>
+        <label>Óptica
+          <input name="optica" autocomplete="organization" aria-describedby="demo-optica-help demo-optica-error" required />
+          <small class="field-help" id="demo-optica-help">Indica el nombre de tu negocio. Ej.: Óptica Buena Vista.</small>
+          <small class="field-error" id="demo-optica-error" aria-live="polite" hidden></small>
+        </label>
+        <label>WhatsApp
+          <input name="whatsapp" type="tel" autocomplete="tel" aria-describedby="demo-whatsapp-help demo-whatsapp-error" required />
+          <small class="field-help" id="demo-whatsapp-help">Número peruano de 9 dígitos, con +51 opcional. Ej.: 987 654 321.</small>
+          <small class="field-error" id="demo-whatsapp-error" aria-live="polite" hidden></small>
+        </label>
+        <label>Correo
+          <input name="correo" type="email" autocomplete="email" aria-describedby="demo-correo-help demo-correo-error" required />
+          <small class="field-help" id="demo-correo-help">Ingresa tu correo de contacto. Ej.: ana@correo.com.</small>
+          <small class="field-error" id="demo-correo-error" aria-live="polite" hidden></small>
+        </label>
         <label>¿Qué quieres ordenar primero?
-          <textarea name="mensaje" rows="3" placeholder="Citas, inventario, caja..."></textarea>
+          <textarea name="mensaje" rows="3" placeholder="Citas, inventario, caja..." aria-describedby="demo-mensaje-help"></textarea>
+          <small class="field-help" id="demo-mensaje-help">Opcional. Cuéntanos qué necesitas organizar: citas, inventario o seguimiento.</small>
         </label>
         <button class="btn btn-navy" type="submit">Enviar solicitud</button>
       </form>

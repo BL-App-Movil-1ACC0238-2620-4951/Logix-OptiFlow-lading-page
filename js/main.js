@@ -264,8 +264,76 @@ modal.addEventListener("click", (event) => {
   if (event.target === modal || event.target.closest("[data-close]")) modal.close();
 });
 
-modal.querySelector("#panel-demo").addEventListener("submit", (event) => {
+const demoForm = modal.querySelector("#panel-demo");
+const demoFields = Array.from(demoForm.querySelectorAll("input[required]"));
+const touchedDemoFields = new Set();
+
+// Use inline messages while retaining native validation when JavaScript is unavailable.
+demoForm.noValidate = true;
+
+function getDemoFieldError(field) {
+  const value = field.value.trim();
+  if (!value) {
+    const requiredMessages = {
+      nombre: "Escribe tu nombre; no puede contener solo espacios.",
+      optica: "Escribe el nombre de tu óptica; no puede contener solo espacios.",
+      whatsapp: "Ingresa tu número de WhatsApp.",
+      correo: "Ingresa tu correo de contacto."
+    };
+    return requiredMessages[field.name];
+  }
+  if (field.name === "whatsapp") {
+    const number = value.replace(/[\s()-]/g, "");
+    if (!/^(\+51)?9\d{8}$/.test(number)) {
+      return "Usa 9 dígitos que comiencen con 9, con +51 opcional. Ej.: 987 654 321.";
+    }
+  }
+  if (field.name === "correo" && field.validity.typeMismatch) {
+    return "Ingresa un correo válido. Ej.: ana@correo.com.";
+  }
+  return "";
+}
+
+function validateDemoField(field) {
+  const message = getDemoFieldError(field);
+  const error = document.querySelector("#demo-" + field.name + "-error");
+  error.textContent = message;
+  error.hidden = !message;
+  if (message) field.setAttribute("aria-invalid", "true");
+  else field.removeAttribute("aria-invalid");
+  return !message;
+}
+
+demoFields.forEach((field) => {
+  field.addEventListener("blur", () => {
+    touchedDemoFields.add(field);
+    validateDemoField(field);
+  });
+  field.addEventListener("input", () => {
+    if (touchedDemoFields.has(field)) validateDemoField(field);
+  });
+});
+
+demoForm.addEventListener("reset", () => {
+  touchedDemoFields.clear();
+  demoFields.forEach((field) => {
+    field.removeAttribute("aria-invalid");
+    const error = document.querySelector("#demo-" + field.name + "-error");
+    error.textContent = "";
+    error.hidden = true;
+  });
+});
+
+demoForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  const invalidFields = demoFields.filter((field) => {
+    touchedDemoFields.add(field);
+    return !validateDemoField(field);
+  });
+  if (invalidFields.length) {
+    invalidFields[0].focus();
+    return;
+  }
   document.querySelector("#done-text").textContent =
     "Listo. Esta pantalla confirma la solicitud, pero la landing todavía no la envía a un servidor. Cuando el canal comercial quede conectado, estos mismos datos llegarán al equipo de OptiFlow.";
   openModal("done");
