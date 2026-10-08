@@ -36,7 +36,6 @@ h1,h2,h3{font-weight:600}.btn{font-weight:600}
 :root[data-theme=dark] .nav-links a[aria-current=location]{background:#1a3166;border-color:#2b4a8f;color:#fff}
 :root[data-theme=dark] .band-tint{background:linear-gradient(180deg,#0e1b3b,#0c1832)}
 :root[data-theme=dark] .hero-card,:root[data-theme=dark] .menu-btn,:root[data-theme=dark] .toggle,:root[data-theme=dark] .modal{background:var(--card);color:var(--ink)}
-:root[data-theme=dark] .sheet::before{background:rgba(18,32,65,.7)}
 :root[data-theme=dark] .hero-bg::after{background:linear-gradient(90deg,rgba(10,21,48,.55),rgba(10,21,48,.2))}
 :root[data-theme=dark] .hero-bg img{filter:brightness(.7) saturate(.9)}
 :root[data-theme=dark] .plan li,:root[data-theme=dark] .review blockquote{color:#c4d1ea}
