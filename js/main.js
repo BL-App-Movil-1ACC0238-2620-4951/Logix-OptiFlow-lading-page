@@ -326,16 +326,16 @@ function getDemoFieldError(field) {
       whatsapp: "Ingresa tu número de WhatsApp.",
       correo: "Ingresa tu correo de contacto."
     };
-    return T(requiredMessages[field.name]);
+    return requiredMessages[field.name];
   }
   if (field.name === "whatsapp") {
     const number = value.replace(/[\s()-]/g, "");
     if (!/^(\+51)?9\d{8}$/.test(number)) {
-      return T("Usa 9 dígitos que comiencen con 9, con +51 opcional. Ej.: 987 654 321.");
+      return "Usa 9 dígitos que comiencen con 9, con +51 opcional. Ej.: 987 654 321.";
     }
   }
   if (field.name === "correo" && field.validity.typeMismatch) {
-    return T("Ingresa un correo válido. Ej.: ana@correo.com.");
+    return "Ingresa un correo válido. Ej.: ana@correo.com.";
   }
   return "";
 }
