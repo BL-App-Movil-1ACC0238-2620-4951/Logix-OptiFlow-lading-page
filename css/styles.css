@@ -277,17 +277,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .sheet { position: relative; }
-.sheet::before {
-  content: "";
-  position: absolute;
-  top: -16px;
-  right: 18px;
-  left: 42px;
-  height: 100%;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: var(--shadow);
-}
+
 .hero-card {
   position: relative;
   padding: 36px;
