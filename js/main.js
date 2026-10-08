@@ -181,15 +181,119 @@ const modal = document.querySelector("#modal");
 
 document.querySelector("#year").textContent = String(new Date().getFullYear());
 
-menuBtn.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("is-open");
+function setMenuOpen(open) {
+  navLinks.classList.toggle("is-open", open);
   menuBtn.setAttribute("aria-expanded", String(open));
   menuBtn.querySelector(".sr-only").textContent = open ? "Cerrar menú" : "Abrir menú";
+}
+
+menuBtn.addEventListener("click", () => {
+  setMenuOpen(!navLinks.classList.contains("is-open"));
 });
 
 navLinks.addEventListener("click", (event) => {
-  if (event.target.closest("a")) navLinks.classList.remove("is-open");
+  if (event.target.closest("a, button")) setMenuOpen(false);
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navLinks.classList.contains("is-open")) {
+    setMenuOpen(false);
+    menuBtn.focus();
+  }
+});
+
+const sectionLinks = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
+const navigationSections = Array.from(document.querySelectorAll("main section"))
+  .map((section) => ({
+    section,
+    // Introductory blocks without an anchor belong to Inicio.
+    link: sectionLinks.find((link) => link.getAttribute("href") === "#" + (section.id || "inicio"))
+  }));
+
+let selectedNavigationLink = null;
+let navigationEndTimer = 0;
+
+function markNavigationLink(activeLink) {
+  sectionLinks.forEach((link) => {
+    if (link === activeLink) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+}
+
+function finishNavigationScroll() {
+  window.clearTimeout(navigationEndTimer);
+  selectedNavigationLink = null;
+  queueNavigationUpdate();
+}
+
+function waitForNavigationEnd() {
+  window.clearTimeout(navigationEndTimer);
+  // Fallback for browsers without scrollend, including a click on the current section.
+  navigationEndTimer = window.setTimeout(finishNavigationScroll, 180);
+}
+
+document.addEventListener("click", (event) => {
+  const anchor = event.target.closest('a[href^="#"]');
+  if (!anchor || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  const link = sectionLinks.find((item) => item.getAttribute("href") === anchor.getAttribute("href"));
+  if (!link) return;
+  selectedNavigationLink = link;
+  markNavigationLink(link);
+  waitForNavigationEnd();
+});
+
+// Manual input interrupts the selected destination and resumes section tracking.
+window.addEventListener("wheel", finishNavigationScroll, { passive: true });
+window.addEventListener("touchstart", finishNavigationScroll, { passive: true });
+document.addEventListener("keydown", (event) => {
+  if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) finishNavigationScroll();
+});
+window.addEventListener("scrollend", finishNavigationScroll);
+
+function updateActiveSection() {
+  if (!navigationSections.length) return;
+  if (selectedNavigationLink) {
+    markNavigationLink(selectedNavigationLink);
+    return;
+  }
+  const headerBottom = document.querySelector(".nav").getBoundingClientRect().bottom;
+  const marker = headerBottom + Math.min(140, Math.max(24, (window.innerHeight - headerBottom) * 0.2));
+  let current = navigationSections[0];
+
+  // Follow document order, even when the menu lists prices before benefits.
+  navigationSections.forEach((item) => {
+    if (item.section.getBoundingClientRect().top <= marker) current = item;
+  });
+
+  // The last section may be too short to reach the top of the viewport.
+  if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+    current = navigationSections[navigationSections.length - 1];
+  }
+
+  markNavigationLink(current.link);
+}
+
+let navigationFrame = 0;
+function queueNavigationUpdate() {
+  if (navigationFrame) return;
+  navigationFrame = requestAnimationFrame(() => {
+    navigationFrame = 0;
+    updateActiveSection();
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if (selectedNavigationLink) waitForNavigationEnd();
+  queueNavigationUpdate();
+}, { passive: true });
+window.addEventListener("resize", () => {
+  if (window.matchMedia("(min-width: 861px)").matches) setMenuOpen(false);
+  queueNavigationUpdate();
+});
+window.addEventListener("load", queueNavigationUpdate);
+window.addEventListener("pageshow", queueNavigationUpdate);
+window.addEventListener("hashchange", queueNavigationUpdate);
+updateActiveSection();
 
 function openModal(name) {
   modal.querySelectorAll("[data-panel]").forEach((panel) => {
@@ -206,8 +310,76 @@ modal.addEventListener("click", (event) => {
   if (event.target === modal || event.target.closest("[data-close]")) modal.close();
 });
 
-modal.querySelector("#panel-demo").addEventListener("submit", (event) => {
+const demoForm = modal.querySelector("#panel-demo");
+const demoFields = Array.from(demoForm.querySelectorAll("input[required]"));
+const touchedDemoFields = new Set();
+
+// Use inline messages while retaining native validation when JavaScript is unavailable.
+demoForm.noValidate = true;
+
+function getDemoFieldError(field) {
+  const value = field.value.trim();
+  if (!value) {
+    const requiredMessages = {
+      nombre: "Escribe tu nombre; no puede contener solo espacios.",
+      optica: "Escribe el nombre de tu óptica; no puede contener solo espacios.",
+      whatsapp: "Ingresa tu número de WhatsApp.",
+      correo: "Ingresa tu correo de contacto."
+    };
+    return T(requiredMessages[field.name]);
+  }
+  if (field.name === "whatsapp") {
+    const number = value.replace(/[\s()-]/g, "");
+    if (!/^(\+51)?9\d{8}$/.test(number)) {
+      return T("Usa 9 dígitos que comiencen con 9, con +51 opcional. Ej.: 987 654 321.");
+    }
+  }
+  if (field.name === "correo" && field.validity.typeMismatch) {
+    return T("Ingresa un correo válido. Ej.: ana@correo.com.");
+  }
+  return "";
+}
+
+function validateDemoField(field) {
+  const message = getDemoFieldError(field);
+  const error = document.querySelector("#demo-" + field.name + "-error");
+  error.textContent = message;
+  error.hidden = !message;
+  if (message) field.setAttribute("aria-invalid", "true");
+  else field.removeAttribute("aria-invalid");
+  return !message;
+}
+
+demoFields.forEach((field) => {
+  field.addEventListener("blur", () => {
+    touchedDemoFields.add(field);
+    validateDemoField(field);
+  });
+  field.addEventListener("input", () => {
+    if (touchedDemoFields.has(field)) validateDemoField(field);
+  });
+});
+
+demoForm.addEventListener("reset", () => {
+  touchedDemoFields.clear();
+  demoFields.forEach((field) => {
+    field.removeAttribute("aria-invalid");
+    const error = document.querySelector("#demo-" + field.name + "-error");
+    error.textContent = "";
+    error.hidden = true;
+  });
+});
+
+demoForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  const invalidFields = demoFields.filter((field) => {
+    touchedDemoFields.add(field);
+    return !validateDemoField(field);
+  });
+  if (invalidFields.length) {
+    invalidFields[0].focus();
+    return;
+  }
   document.querySelector("#done-text").textContent =
     "Listo. Esta pantalla confirma la solicitud, pero la landing todavía no la envía a un servidor. Cuando el canal comercial quede conectado, estos mismos datos llegarán al equipo de OptiFlow.";
   openModal("done");
