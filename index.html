@@ -11,13 +11,12 @@
     <link rel="icon" href="assets/LOGO%20LADING/LOGO%20OJO.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wdth,wght@75..100,300..800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/improve.css" />
   </head>
   <body>
+    <div class="progress" aria-hidden="true"></div>
     <div class="page-fx" aria-hidden="true">
       <span class="blob blob-a"></span>
       <span class="blob blob-b"></span>
@@ -67,18 +66,31 @@
     <header class="nav">
       <div class="wrap nav-bar">
         <a class="logo" href="#inicio">
-          <img class="logo-mark" src="assets/LOGO%20LADING/LOGO%20OJO.png" alt="" />
+          <img class="logo-mark" src="assets/LOGO%20LADING/LOGO%20OJO.png" alt="OptiFlow Logo" />
           OptiFlow
         </a>
+
         <nav class="nav-links" id="nav-links">
-          <a href="#inicio">Inicio</a>
-          <a href="#planes">Precios</a>
+          <a href="#nosotros">Conócenos</a>
           <a href="#beneficios">Beneficios</a>
-          <a href="#contacto">Contacto</a>
-          <button type="button" data-open="login">Login</button>
-          <button class="btn btn-navy" type="button" data-open="demo">Comenzar</button>
+          <a href="#planes">Planes</a>
+          <a href="#equipo">Equipo</a>
+          <a href="#resenas">Reseñas y FAQ</a>
         </nav>
-        <button class="btn btn-navy nav-wa" type="button" data-open="demo">Comenzar</button>
+
+        <div class="tools">
+          <button class="tool" id="lang" type="button" aria-label="Switch to English">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            <span>EN</span>
+          </button>
+          <button class="tool" id="theme" type="button" aria-label="Modo noche / Night mode" aria-pressed="false">
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          </button>
+        </div>
+
+        <button class="btn btn-navy nav-wa" type="button" data-open="demo">Solicitar demo</button>
+
         <button class="menu-btn" id="menu-btn" type="button" aria-controls="nav-links" aria-expanded="false">
           <span class="sr-only">Abrir menú</span>
           <span></span>
@@ -90,9 +102,6 @@
 
     <main>
       <section class="hero-band" id="inicio">
-        <div class="hero-bg" aria-hidden="true">
-          <img src="assets/image%206.png" alt="" />
-        </div>
         <div class="wrap hero">
         <div class="visual">
           <h1>Tu cita óptica ideal, <span>en tu bolsillo</span></h1>
@@ -109,6 +118,7 @@
             <h2>Transforma la gestión de tu óptica con <span>OptiFlow</span></h2>
             <p>OptiFlow conecta pacientes con ópticas para reservar citas, seguir pedidos y mantener historiales clínicos.</p>
             <button class="btn btn-navy" type="button" data-open="demo">Solicitar Demo</button>
+            <p class="trust">Sin tarjeta · Te respondemos en 24 horas</p>
           </article>
         </div>
         </div>
@@ -155,7 +165,7 @@
         </div>
       </section>
 
-      <section class="band band-tint">
+      <section class="band band-tint" id="nosotros">
         <div class="wrap block">
         <div class="center">
           <p class="kicker">Quiénes somos</p>
@@ -186,32 +196,32 @@
         </div>
         <div class="grid-3">
           <article class="card benefit tilt">
-            <img class="benefit-icon" src="assets/beneficios/reserva.png" alt="" width="88" height="88" />
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18m-11 5 2 2 4-4"/></svg></span>
             <h3>Reserva en segundos</h3>
             <p>Agenda tu cita eligiendo modelo, fecha, hora y local — todo desde tu celular, sin desplazarte físicamente.</p>
           </article>
           <article class="card benefit tilt">
-            <img class="benefit-icon" src="assets/beneficios/historial.png" alt="" width="88" height="88" />
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17s-3-1.8-3-3.8a1.7 1.7 0 0 1 3-1 1.7 1.7 0 0 1 3 1c0 2-3 3.8-3 3.8z"/></svg></span>
             <h3>Historia clínica digital</h3>
             <p>Receta y historial visual siempre disponibles en tu smartphone. Nunca más olvides tus especificaciones de lentes.</p>
           </article>
           <article class="card benefit tilt">
-            <img class="benefit-icon" src="assets/beneficios/seguimiento.png" alt="" width="88" height="88" />
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
             <h3>Seguimiento en tiempo real</h3>
             <p>Sabe exactamente en qué etapa está la fabricación de tus lentes sin necesidad de llamar a la óptica.</p>
           </article>
           <article class="card benefit tilt">
-            <img class="benefit-icon" src="assets/beneficios/notificacion.png" alt="" width="88" height="88" />
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9zM10 20a2 2 0 0 0 4 0"/></svg></span>
             <h3>Notificaciones inteligentes</h3>
             <p>Recordatorios automáticos de citas y cumpleaños de pacientes.</p>
           </article>
           <article class="card benefit tilt">
-            <img class="benefit-icon" src="assets/beneficios/delegacion.png" alt="" width="88" height="88" />
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span>
             <h3>Delegación de gestión</h3>
             <p>Asigna la gestión de tu agenda a un colaborador sin perder visibilidad ni control sobre las operaciones.</p>
           </article>
           <article class="card benefit tilt">
-            <img class="benefit-icon" src="assets/beneficios/tablero.png" alt="" width="88" height="88" />
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M15 3v18M5.5 8h1M11.5 8h1M17.5 8h1M11.5 13h1"/></svg></span>
             <h3>Tablero Kanban</h3>
             <p>Visualiza y actualiza el estado de cada orden de trabajo con un solo toque desde tu dispositivo móvil.</p>
           </article>
@@ -445,7 +455,18 @@
         </div>
       </section>
 
-      <section class="band band-plain" id="contacto">
+      <section class="band band-plain" id="faq" aria-labelledby="faq-title">
+        <div class="wrap block">
+          <div class="center"><h2 id="faq-title">Preguntas frecuentes</h2></div>
+          <div class="faq">
+            <details><summary>¿Necesito instalar algo?</summary><p>No. OptiFlow funciona desde el celular y el navegador; tu equipo empieza el mismo día.</p></details>
+            <details><summary>¿Puedo cambiar de plan después?</summary><p>Sí. Puedes subir, bajar o cancelar antes del siguiente ciclo de cobro.</p></details>
+            <details><summary>¿Mis datos y los de mis pacientes están seguros?</summary><p>Solo el personal que tú autorizas accede a la información, y nunca la vendemos.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="band band-tint" id="contacto">
         <div class="wrap">
         <div class="cta">
           <p>Tu cita óptica ideal, en tu bolsillo</p>
@@ -487,10 +508,12 @@
             <h3 class="foot-title" id="foot-explorar">Explorar</h3>
             <ul>
               <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#nosotros">Conócenos</a></li>
               <li><a href="#beneficios">Beneficios</a></li>
               <li><a href="#planes">Planes</a></li>
               <li><a href="#equipo">Equipo</a></li>
               <li><a href="#resenas">Reseñas</a></li>
+              <li><a href="#faq">Preguntas</a></li>
             </ul>
           </nav>
 
@@ -590,6 +613,7 @@
         <button class="btn btn-navy" type="button" data-close>Cerrar</button>
       </div>
     </dialog>
+    <button class="btn btn-navy float-cta" type="button" data-open="demo">Solicitar Demo</button>
 
     <script type="importmap">
       {
@@ -599,6 +623,7 @@
       }
     </script>
     <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
     <script type="module" src="js/glasses.js"></script>
   </body>
 </html>
